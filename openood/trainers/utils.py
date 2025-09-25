@@ -36,6 +36,7 @@ from .palm_trainer import PALMTrainer
 from .t2fnorm_trainer import T2FNormTrainer
 from .reweightood_trainer import ReweightOODTrainer
 from .ascood_trainer import ASCOODTrainer
+from .asl_trainer import ASLTrainer
 
 
 def get_trainer(net, train_loader: DataLoader, val_loader: DataLoader,
@@ -74,6 +75,7 @@ def get_trainer(net, train_loader: DataLoader, val_loader: DataLoader,
             't2fnorm': T2FNormTrainer,
             'reweightood': ReweightOODTrainer,
             'ascood': ASCOODTrainer,
+            'asl': ASLTrainer,
         }
         if config.trainer.name in ['cider', 'npos']:
             return trainers[config.trainer.name](net, train_loader, val_loader,

@@ -13,7 +13,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from openood.evaluation_api import Evaluator
-
 from openood.networks import ResNet18_32x32, ResNet18_224x224, ResNet50
 from openood.networks.conf_branch_net import ConfBranchNet
 from openood.networks.godin_net import GodinNet
@@ -24,7 +23,7 @@ from openood.networks.cider_net import CIDERNet
 from openood.networks.npos_net import NPOSNet
 from openood.networks.palm_net import PALMNet
 from openood.networks.t2fnorm_net import T2FNormNet
-from openood.networks.ascood_net import ASCOODNet
+from openood.networks.asl_net import ASLNet
 
 
 def update(d, u):
@@ -134,6 +133,10 @@ for subfolder in sorted(glob(os.path.join(root, 's*'))):
                       feat_dim=128,
                       num_classes=num_classes)
         postprocessor_name = 'mds'
+    elif postprocessor_name == 'asl':
+        backbone = model_arch(num_classes=num_classes)
+        net = ASLNet(backbone=backbone, num_classes=num_classes)
+        postprocessor_name = 'mds'
     elif postprocessor_name == 't2fnorm':
         backbone = model_arch(num_classes=num_classes)
         net = T2FNormNet(backbone=backbone, num_classes=num_classes)
@@ -143,8 +146,16 @@ for subfolder in sorted(glob(os.path.join(root, 's*'))):
     if args.wrapper_net is not None:
         net = eval(args.wrapper_net)(backbone=net)
 
+    # weight_files = glob(os.path.join(subfolder, 'last_epoch*.ckpt'))
+    weight_files = glob(os.path.join(subfolder, 'best*.ckpt'))
+    print(weight_files)
+    if len(weight_files) == 0:
+        raise FileNotFoundError(f'No weight files starting with last_epoch found in {subfolder}')
+    weight_file = weight_files[0]
+    print(f'Loading weight file: {weight_file}')
     net.load_state_dict(
-        torch.load(os.path.join(subfolder, 'best.ckpt'), map_location='cpu'))
+        torch.load(weight_file, map_location='cpu')
+    )
     net.cuda()
     net.eval()
 
