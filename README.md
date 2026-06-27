@@ -1,6 +1,6 @@
 # Revisiting Out-of-Distribution Detection: Angular Separation Learning as a Powerful and Simple Baseline
 
-This project is the code implementation of the paper *Revisiting Out-of-Distribution Detection: Angular Separation Learning as a Powerful and Simple Baseline*, and the entire code is built on top of the official implementation of OpenOOD.
+This project is the code implementation of the paper *Why Feature Magnitude Deceives OOD Detectors: An Angular Separation Perspective*, and the entire code is built on top of the official implementation of OpenOOD.
 
 # Environment
 The versions of packages in our environment are detailed in the `requirements.txt` file.
