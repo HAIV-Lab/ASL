@@ -14,7 +14,7 @@
 >
     <a href="https://vain222.github.io/" target='_blank'>Hanlin Li</a>&emsp;
     <a href="https://jimm0011.github.io/" target='_blank'>Jing Ma</a>&emsp;
-    Zehang Wei&emsp;
+    Zehang Wei&emsp; 
     Jiamin Yan&emsp;
     <a href="https://eglxiang.github.io/" target='_blank'>Xiang Xiang</a>
 </div>
