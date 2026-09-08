@@ -25,6 +25,9 @@
 >
 Huazhong University of Science and Technology (HUST)&emsp;
 
+
+Correspondence to Xiang Xiang (xex@hust.edu.cn)
+
 </div>
 
 
@@ -50,7 +53,6 @@ For dataset preparation, please refer to the dataset preparation section of Open
 ├── main.py
 ├── ...
 ```
-
 # Training and Evaluation
 We have placed the training and evaluation scripts in the `scripts/ood/asl` folder; for details, please refer to the files within this folder.
 
